@@ -44,6 +44,16 @@ Use in HTML
 
 <form>
     <input type="date" name="date" data-control="form-date" />
-    <button type="submit"></button>
+    <button type="submit">Submit</button>
 </form>
+```
+
+## Rebind
+
+You can bind the added controls for a new content:
+
+```js
+var content = $('<input type="date" name="date" data-control="form-date" />');
+Container.Controller.bind(content);
+$('body').append(content);
 ```
