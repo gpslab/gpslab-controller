@@ -20,7 +20,7 @@ Add new control to controller
 
 ```js
 // common.js
-var Container = {};
+var Container = {}; // access to Controller from global namespace
 
 $(function(){
     // is not required
