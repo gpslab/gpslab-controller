@@ -23,9 +23,6 @@ module.exports = function(grunt) {
                 }
             },
             build: {
-                options: {
-                    mangle: false // do not change the names of the functions in the minification
-                },
                 files: {
                     'build/controller.min.js': 'build/controller.js'
                 }
