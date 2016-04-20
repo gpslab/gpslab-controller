@@ -23,7 +23,9 @@ Add new control to controller
 var Container = {};
 
 $(function(){
-    Container.FormToken = new FormToken();
+    // is not required
+    //Container.FormToken = new FormToken();
+    //Container.Locker = new Locker();
 
     Container.Controller = new Controller();
     Container.Controller.addControl('form-date', new FormDate());
