@@ -36,7 +36,7 @@ Use in HTML
 ```html
 <!-- ... -->
 
-<script src="js/controller.min.js"></script>
+<script src="js/js-controller/build/controller.min.js"></script>
 <script src="js/FormDate.js"></script>
 <script src="js/common.js"></script>
 
