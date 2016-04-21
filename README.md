@@ -20,15 +20,11 @@ Add new control to controller
 
 ```js
 // common.js
-var Container = {}; // access to Controller from global namespace
+var cont = new Controller();
+cont.addControl('form-date', new FormDate());
 
 $(function(){
-    // util is not required
-    //Container.Locker = new Locker();
-
-    Container.Controller = new Controller();
-    Container.Controller.addControl('form-date', new FormDate());
-    Container.Controller.bind();
+    cont.bind();
 });
 ```
 
@@ -55,6 +51,6 @@ You can bind the added controls for a new content:
 
 ```js
 var content = $('<input type="date" name="date" data-control="form-date" />');
-Container.Controller.bind(content);
+cont.bind(content);
 $('body').append(content);
 ```
