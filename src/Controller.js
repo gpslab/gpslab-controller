@@ -7,6 +7,7 @@ Controller.prototype.addControl = function(name, control) {
         control.setController(this);
         this._controls[name] = control;
     }
+    return this;
 };
 
 Controller.prototype.bindControl = function(target) {
@@ -14,6 +15,7 @@ Controller.prototype.bindControl = function(target) {
     if (this._controls[name] instanceof ControllerControl) {
         this._controls[name].bind(target);
     }
+    return this;
 };
 
 Controller.prototype.bind = function(target) {
@@ -27,4 +29,5 @@ Controller.prototype.bind = function(target) {
             that.bindControl($(this));
         });
     }
+    return this;
 };
