@@ -55,8 +55,8 @@ You can bind the added controls for a new content:
 
 ```js
 var content = $('<input type="date" name="date" data-control="form-date" />');
-cont.bind(content);
 $('body').append(content);
+cont.bind(content);
 ```
 
 ## Locker util
