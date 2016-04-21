@@ -1,6 +1,10 @@
 # js-controller
 Micro framework for JavaScript
 
+## Require
+
+jQuery 1.11+
+
 ## How to
 
 Create control
