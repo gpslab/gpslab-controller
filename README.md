@@ -9,13 +9,13 @@ jQuery 1.11+
 
 Create control
 ```js
-// FormDate.js
-var FormDate = function() {
+// ControlFormDate.js
+var ControlFormDate = function() {
 };
 
-extend(FormDate, ControllerControl);
+extend(ControlFormDate, ControllerControl);
 
-FormDate.prototype.bind = function(target) {
+ControlFormDate.prototype.bind = function(target) {
     target.datepicker({dateFormat: 'yy-mm-dd'});
 };
 ```
@@ -25,7 +25,7 @@ Add new control to controller
 ```js
 // common.js
 var cont = new Controller();
-cont.addControl('form-date', new FormDate());
+cont.addControl('form-date', new ControlFormDate());
 
 $(function(){
     cont.bind();
@@ -38,7 +38,7 @@ Use in HTML
 <!-- ... -->
 
 <script src="js/js-controller/build/controller.min.js"></script>
-<script src="js/FormDate.js"></script>
+<script src="js/ControlFormDate.js"></script>
 <script src="js/common.js"></script>
 
 <!-- ... -->
