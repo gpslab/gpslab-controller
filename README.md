@@ -58,3 +58,23 @@ var content = $('<input type="date" name="date" data-control="form-date" />');
 cont.bind(content);
 $('body').append(content);
 ```
+
+## Locker util
+
+Util for lock page and element on page.
+
+```js
+var lock = new Locker();
+lock.lock(); // add css class 'locker_wait' to body tag
+lock.isLock(); // return true
+lock.unlock(); // remove class 'locker_wait'
+```
+
+Lock element
+
+```js
+var el = $('.example');
+var lock = new Locker();
+lock.lock(el); // add class 'locker_wait' to body and add class 'locker_lock' to element
+lock.unlock(el); // remove all added classes
+```
