@@ -23,8 +23,7 @@ Add new control to controller
 var Container = {}; // access to Controller from global namespace
 
 $(function(){
-    // utils is not required
-    //Container.FormToken = new FormToken();
+    // util is not required
     //Container.Locker = new Locker();
 
     Container.Controller = new Controller();
