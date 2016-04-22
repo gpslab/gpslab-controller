@@ -11,7 +11,8 @@ function extend(Child, Parent) {
 /**
  * Controller for apply controls
  */
-var Controller = function() {
+var Controller = function(locker) {
+    this._locker = locker; // private
     this._controls = []; // private
 };
 
@@ -44,6 +45,10 @@ Controller.prototype = {
             });
         }
         return this;
+    },
+
+    getLocker: function() {
+        return this._locker;
     }
 };
 
