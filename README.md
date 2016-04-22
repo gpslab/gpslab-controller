@@ -91,9 +91,9 @@ extend(ControlLock, ControllerControl);
 ControlLock.prototype.bind = function(target) {
     var that = this;
     target.keydown(function(){
-        that.getController.getLocker().lock();
+        that.getController.getLocker().lock(target);
     }).keyup(function(){
-        that.getController.getLocker().unlock();
+        that.getController.getLocker().unlock(target);
     });
 };
 
