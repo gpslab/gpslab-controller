@@ -96,8 +96,10 @@ ControlLock.prototype.bind = function(target) {
         that.getController.getLocker().unlock(target);
     });
 };
+```
 
-
+```js
+// common.js
 var cont = new Controller(new Locker());
 cont.addControl('lock', new ControlLock());
 
