@@ -78,3 +78,30 @@ var lock = new Locker();
 lock.lock(el); // add class 'locker_wait' to body and add class 'locker_lock' to element
 lock.unlock(el); // remove all added classes
 ```
+
+Use locker from control
+
+```js
+// ControlLock.js
+var ControlLock = function() {
+};
+
+extend(ControlLock, ControllerControl);
+
+ControlLock.prototype.bind = function(target) {
+    var that = this;
+    target.keydown(function(){
+        that.getController.getLocker().lock();
+    }).keyup(function(){
+        that.getController.getLocker().unlock();
+    });
+};
+
+
+var cont = new Controller(new Locker());
+cont.addControl('lock', new ControlLock());
+
+$(function(){
+    cont.bind();
+});
+```
