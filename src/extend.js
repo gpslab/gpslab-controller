@@ -1,3 +1,4 @@
+
 function extend(Child, Parent) {
     var F = function() {};
     F.prototype = Parent.prototype;
