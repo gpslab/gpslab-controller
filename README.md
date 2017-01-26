@@ -111,7 +111,7 @@ Container.Locker.unlock(el); // remove all added classes
 ```js
 // ControlLock.js
 var ControlLock = function(locker) {
-    this._locker = locker;
+    this._locker = locker; // private
 };
 
 $.extend(ControlLock, ControllerControl);
@@ -163,8 +163,8 @@ Will be better create new control container on bind control
 ```js
 // ControlLockContainer.js
 var ControlLockContainer = function(target, locker) {
-    this._target = target;
-    this._locker = locker;
+    this._target = target; // private
+    this._locker = locker; // private
 
     var that = this;
     this._target.keydown(function() {
@@ -188,7 +188,7 @@ ControlLockContainer.prototype = {
 ```js
 // ControlLock.js
 var ControlLock = function(locker) {
-    this._locker = locker;
+    this._locker = locker; // private
 };
 
 $.extend(ControlLock, ControllerControl);
@@ -196,6 +196,62 @@ $.extend(ControlLock, ControllerControl);
 ControlLock.prototype.bind = function(target) {
     new ControlLockContainer(target, this._locker);
 };
+```
+
+### Rebind
+
+On mouse click to target element append to it new data input element and bind to it `ControlFormDate` control.
+
+```js
+// ControlAppendContainer.js
+var ControlAppendContainer = function(target, element, controller) {
+    this._target = target; // private
+    this._element = element; // private
+    this._controller = controller; // private
+
+    var that = this;
+    this._target.click(function() {
+        that.append();
+    });
+};
+
+ControlAppendContainer.prototype = {
+    append: function() {
+        var el = this._element.clone();
+        this._controller.bind(el);
+        this._target.append(el);
+    }
+};
+```
+
+```js
+// ControlAppend.js
+var ControlAppend = function(controller, element) {
+    this._controller = controller; // private
+    this._element = $(element); // private
+};
+
+$.extend(ControlLock, ControlAppend);
+
+ControlAppend.prototype.bind = function(target) {
+    new ControlAppendContainer(target, this._element, this._controller);
+};
+```
+
+```js
+// common.js
+$(function() {
+    var Container = {
+        Controller: new Controller(),
+    }
+
+    Container.Controller.addControl('form-date', new ControlFormDate());
+    Container.Controller.addControl('append', new ControlAppend(
+        Container.Controller,
+        '<input type="date" name="date" data-control="form-date" />'
+    ));
+    Container.Controller.bind();
+});
 ```
 
 ### Combine files
