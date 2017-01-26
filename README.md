@@ -226,9 +226,9 @@ ControlAppendContainer.prototype = {
 
 ```js
 // ControlAppend.js
-var ControlAppend = function(controller, element) {
-    this._controller = controller; // private
+var ControlAppend = function(element, controller) {
     this._element = $(element); // private
+    this._controller = controller; // private
 };
 
 $.extend(ControlLock, ControlAppend);
@@ -247,8 +247,8 @@ $(function() {
 
     Container.Controller.addControl('form-date', new ControlFormDate());
     Container.Controller.addControl('append', new ControlAppend(
-        Container.Controller,
-        '<input type="date" name="date" data-control="form-date" />'
+        '<input type="date" name="date" data-control="form-date" />',
+        Container.Controller
     ));
     Container.Controller.bind();
 });
