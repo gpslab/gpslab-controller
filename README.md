@@ -60,6 +60,24 @@ $('body').append(content);
 cont.bind(content);
 ```
 
+## Multi controls
+
+You can bind several controls to one DOM element.
+
+```html
+<form>
+    <input
+        type="date"
+        name="date"
+        required="required"
+        data-control="form-date form-required form-related"
+        data-related-target="#date_related"
+    />
+    <input type="date" name="date_related" data-control="form-date" id="date_related" />
+    <button type="submit">Submit</button>
+</form>
+```
+
 ## Locker util
 
 Util for lock page and element on page.

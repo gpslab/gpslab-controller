@@ -16,9 +16,13 @@ Controller.prototype = {
     },
 
     bindControl: function(target) {
-        var name = target.data('control');
-        if (this._controls[name] instanceof ControllerControl) {
-            this._controls[name].bind(target);
+        // separate the control names by ' ' or ','
+        var names = target.data('control').replace(/[, ]+/g, ' ').split(' ');
+
+        for (var i = 0; i < names.length; i++) {
+            if (this._controls[names[i]] instanceof ControllerControl) {
+                this._controls[names[i]].bind(target);
+            }
         }
 
         return this;
