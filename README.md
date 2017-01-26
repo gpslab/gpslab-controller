@@ -1,5 +1,5 @@
-# js-controller
-Micro framework for JavaScript
+js-controller is a JavaScript micro framework
+=============================================
 
 ## Require
 
@@ -8,12 +8,13 @@ jQuery 1.11+
 ## How to
 
 Create control
+
 ```js
 // ControlFormDate.js
 var ControlFormDate = function() {
 };
 
-extend(ControlFormDate, ControllerControl);
+$.extend(ControlFormDate, ControllerControl);
 
 ControlFormDate.prototype.bind = function(target) {
     target.datepicker({dateFormat: 'yy-mm-dd'});
@@ -37,9 +38,9 @@ Use in HTML
 ```html
 <!-- ... -->
 
-<script src="js/js-controller/build/controller.min.js"></script>
-<script src="js/ControlFormDate.js"></script>
-<script src="js/common.js"></script>
+<script src="/js/js-controller/build/controller.min.js"></script>
+<script src="/js/ControlFormDate.js"></script>
+<script src="/js/common.js"></script>
 
 <!-- ... -->
 
@@ -79,14 +80,14 @@ lock.lock(el); // add class 'locker_wait' to body and add class 'locker_lock' to
 lock.unlock(el); // remove all added classes
 ```
 
-Use locker from control
+### Use locker from control
 
 ```js
 // ControlLock.js
 var ControlLock = function() {
 };
 
-extend(ControlLock, ControllerControl);
+$.extend(ControlLock, ControllerControl);
 
 ControlLock.prototype.bind = function(target) {
     var that = this;

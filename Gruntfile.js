@@ -6,10 +6,8 @@ module.exports = function(grunt) {
         concat: {
             js: {
                 src: [
-                    'src/extend.js',
                     'src/Controller.js',
                     'src/Controller/Control.js',
-                    'src/util/FormToken.js',
                     'src/util/Locker.js'
                 ],
                 dest: 'build/controller.js'
