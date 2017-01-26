@@ -84,7 +84,8 @@ lock.unlock(el); // remove all added classes
 
 ```js
 // ControlLock.js
-var ControlLock = function() {
+var ControlLock = function(locker) {
+    this._locker = locker;
 };
 
 $.extend(ControlLock, ControllerControl);
@@ -92,17 +93,17 @@ $.extend(ControlLock, ControllerControl);
 ControlLock.prototype.bind = function(target) {
     var that = this;
     target.keydown(function(){
-        that.getController.getLocker().lock(target);
+        that._locker.lock(target);
     }).keyup(function(){
-        that.getController.getLocker().unlock(target);
+        that._locker.unlock(target);
     });
 };
 ```
 
 ```js
 // common.js
-var cont = new Controller(new Locker());
-cont.addControl('lock', new ControlLock());
+var cont = new Controller();
+cont.addControl('lock', new ControlLock(new Locker()));
 
 $(function(){
     cont.bind();
