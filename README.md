@@ -109,6 +109,20 @@ $(function(){
 });
 ```
 
+Use in HTML
+
+```html
+<!-- ... -->
+
+<script src="/js/js-controller/build/controller.min.js"></script>
+<script src="/js/ControlLock.js"></script>
+<script src="/js/common.js"></script>
+
+<!-- ... -->
+
+<button type="button" data-control="lock">Lock me</button>
+```
+
 ## License
 
 This bundle is under the [MIT license](http://opensource.org/licenses/MIT). See the complete license in the file: LICENSE

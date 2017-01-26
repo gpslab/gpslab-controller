@@ -3,7 +3,7 @@
  * Controller control
  */
 var ControllerControl = function() {
-    this._controller = null;
+    this._controller = null; // private
 };
 
 ControllerControl.prototype = {
