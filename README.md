@@ -25,11 +25,13 @@ Add new control to controller
 
 ```js
 // common.js
-var cont = new Controller();
-cont.addControl('form-date', new ControlFormDate());
+$(function() {
+    var Container = {
+        Controller: new Controller()
+    }
 
-$(function(){
-    cont.bind();
+    Container.Controller.addControl('form-date', new ControlFormDate());
+    Container.Controller.bind();
 });
 ```
 
@@ -55,9 +57,10 @@ Use in HTML
 You can bind the added controls for a new content:
 
 ```js
-var content = $('<input type="date" name="date" data-control="form-date" />');
-$('body').append(content);
-cont.bind(content);
+var input = $('<input type="date" name="date" data-control="form-date" />');
+$('body').append(input);
+
+Container.Controller.bind(input);
 ```
 
 ## Multi controls
@@ -83,19 +86,24 @@ You can bind several controls to one DOM element.
 Util for lock page and element on page.
 
 ```js
-var lock = new Locker();
-lock.lock(); // add css class 'locker_wait' to body tag
-lock.isLock(); // return true
-lock.unlock(); // remove class 'locker_wait'
+var Container = {
+    Locker: new Locker()
+}
+Container.Locker.lock(); // add css class 'locker_wait' to body tag
+Container.Locker.isLock(); // return true
+Container.Locker.unlock(); // remove class 'locker_wait'
 ```
 
 Lock element
 
 ```js
+var Container = {
+    Locker: new Locker()
+}
+
 var el = $('.example');
-var lock = new Locker();
-lock.lock(el); // add class 'locker_wait' to body and add class 'locker_lock' to element
-lock.unlock(el); // remove all added classes
+Container.Locker.lock(el); // add class 'locker_wait' to body and add class 'locker_lock' to element
+Container.Locker.unlock(el); // remove all added classes
 ```
 
 ### Use locker from control
@@ -110,9 +118,9 @@ $.extend(ControlLock, ControllerControl);
 
 ControlLock.prototype.bind = function(target) {
     var that = this;
-    target.keydown(function(){
+    target.keydown(function() {
         that._locker.lock(target);
-    }).keyup(function(){
+    }).keyup(function() {
         that._locker.unlock(target);
     });
 };
@@ -120,11 +128,14 @@ ControlLock.prototype.bind = function(target) {
 
 ```js
 // common.js
-var cont = new Controller();
-cont.addControl('lock', new ControlLock(new Locker()));
+$(function() {
+    var Container = {
+        Controller: new Controller(),
+        Locker: new Locker()
+    }
 
-$(function(){
-    cont.bind();
+    Container.Controller.addControl('lock', new ControlLock(Container.Locker));
+    Container.Controller.bind();
 });
 ```
 
