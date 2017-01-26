@@ -154,6 +154,56 @@ Use in HTML
 <button type="button" data-control="lock">Lock me</button>
 ```
 
+## Best practice
+
+### Control container
+
+Will be better create new control container on bind control
+
+```js
+// ControlLockContainer.js
+var ControlLockContainer = function(target, locker) {
+    this._target = target;
+    this._locker = locker;
+
+    var that = this;
+    this._target.keydown(function() {
+        that.lock();
+    }).keyup(function() {
+        that.unlock();
+    });
+};
+
+ControlLockContainer.prototype = {
+    lock: function() {
+        this._locker.lock(this._target);
+    },
+
+    unlock: function() {
+        this._locker.unlock(this._target);
+    }
+};
+```
+
+```js
+// ControlLock.js
+var ControlLock = function(locker) {
+    this._locker = locker;
+};
+
+$.extend(ControlLock, ControllerControl);
+
+ControlLock.prototype.bind = function(target) {
+    new ControlLockContainer(target, this._locker);
+};
+```
+
+### Combine files
+
+Will be better combine all JS files to one file.
+You can use [grunt-concat](https://www.npmjs.com/package/grunt-concat) and
+[grunt-contrib-uglify](https://www.npmjs.com/package/grunt-contrib-uglify) for it.
+
 ## License
 
 This bundle is under the [MIT license](http://opensource.org/licenses/MIT). See the complete license in the file: LICENSE
