@@ -9,9 +9,9 @@ var Controller = function() {
 Controller.prototype = {
     addControl: function(name, control) {
         if (control instanceof ControllerControl) {
-            control.setController(this);
             this._controls[name] = control;
         }
+
         return this;
     },
 
@@ -20,6 +20,7 @@ Controller.prototype = {
         if (this._controls[name] instanceof ControllerControl) {
             this._controls[name].bind(target);
         }
+
         return this;
     },
 
@@ -34,6 +35,7 @@ Controller.prototype = {
                 that.bindControl($(this));
             });
         }
+
         return this;
     }
 };

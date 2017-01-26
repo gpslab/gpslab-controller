@@ -2,17 +2,16 @@
 /**
  * Controller for apply controls
  */
-var Controller = function(locker) {
-    this._locker = locker; // private
+var Controller = function() {
     this._controls = []; // private
 };
 
 Controller.prototype = {
     addControl: function(name, control) {
         if (control instanceof ControllerControl) {
-            control.setController(this);
             this._controls[name] = control;
         }
+
         return this;
     },
 
@@ -21,6 +20,7 @@ Controller.prototype = {
         if (this._controls[name] instanceof ControllerControl) {
             this._controls[name].bind(target);
         }
+
         return this;
     },
 
@@ -35,11 +35,8 @@ Controller.prototype = {
                 that.bindControl($(this));
             });
         }
-        return this;
-    },
 
-    getLocker: function() {
-        return this._locker;
+        return this;
     }
 };
 
@@ -48,18 +45,9 @@ Controller.prototype = {
  * Controller control
  */
 var ControllerControl = function() {
-    this._controller = null;
 };
 
 ControllerControl.prototype = {
-    setController: function(controller) {
-        this._controller = controller;
-    },
-
-    getController: function() {
-        return this._controller;
-    },
-
     bind: function(target) {
         throw new Error('Must be implemented');
     }
