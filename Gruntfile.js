@@ -4,11 +4,10 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         concat: {
-            js: {
+            controller: {
                 src: [
                     'src/Controller.js',
-                    'src/Controller/Control.js',
-                    'src/util/Locker.js'
+                    'src/Controller/Control.js'
                 ],
                 dest: 'build/controller.js'
             }
@@ -20,9 +19,14 @@ module.exports = function(grunt) {
                     drop_console: true
                 }
             },
-            build: {
+            controller: {
                 files: {
                     'build/controller.min.js': 'build/controller.js'
+                }
+            },
+            locker: {
+                files: {
+                    'build/locker.min.js': 'src/util/Locker.js'
                 }
             }
         }
