@@ -289,11 +289,10 @@ $(function() {
         Controller: new Controller(),
     }
 
-    Container.Controller.registerControl('form-date', new ControlFormDate());
-    Container.Controller.registerControl('append', new ControlAppend(
-        '<input type="date" name="date" data-control="form-date" />',
-        Container.Controller
-    ));
+    Container.Controller.registerControls({
+        'form-date': new ControlFormDate(),
+        'append': new ControlAppend('<input type="date" name="date" data-control="form-date" />', Container.Controller)
+    });
     Container.Controller.bind();
 });
 ```

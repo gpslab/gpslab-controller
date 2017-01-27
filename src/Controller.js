@@ -25,6 +25,16 @@ Controller.prototype = {
         return this;
     },
 
+    registerControls: function(controls) {
+        for (var name in controls) {
+            if (controls.hasOwnProperty(name)) {
+                this.registerControl(name, controls[name]);
+            }
+        }
+
+        return this;
+    },
+
     bindControl: function(target) {
         // separate the control names by ' ' or ','
         var names = target.data('control').replace(/[, ]+/g, ' ').split(' ');
