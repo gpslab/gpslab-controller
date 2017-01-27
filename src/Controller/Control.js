@@ -1,3 +1,13 @@
+/**
+ * GpsLab Controller
+ * https://github.com/gpslab/js-controller
+ *
+ * Copyright 2017, Peter Gribanov
+ * http://peter-gribanov.ru
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
 
 /**
  * Controller control
