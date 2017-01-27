@@ -158,6 +158,12 @@ Use in HTML
 
 ## Best practice
 
+### Combine files
+
+Will be better combine all JS files to one file.
+You can use [grunt-concat](https://www.npmjs.com/package/grunt-concat) and
+[grunt-contrib-uglify](https://www.npmjs.com/package/grunt-contrib-uglify) for it.
+
 ### Control container
 
 Will be better create new control container on bind control
@@ -255,12 +261,6 @@ $(function() {
     Container.Controller.bind();
 });
 ```
-
-### Combine files
-
-Will be better combine all JS files to one file.
-You can use [grunt-concat](https://www.npmjs.com/package/grunt-concat) and
-[grunt-contrib-uglify](https://www.npmjs.com/package/grunt-contrib-uglify) for it.
 
 ## License
 
