@@ -1,6 +1,6 @@
 /**
  * GpsLab Controller
- * https://github.com/gpslab/js-controller
+ * https://github.com/gpslab/gpslab-controller
  *
  * Copyright 2017, Peter Gribanov
  * http://peter-gribanov.ru
