@@ -1,9 +1,17 @@
 GpsLab Controller is a JavaScript micro framework
 =============================================
 
+[![NPM](https://nodei.co/npm/gpslab-controller.png?downloads=true&stars=true)](https://nodei.co/npm/gpslab-controller/)
+
 ## Require
 
 jQuery 1.11+
+
+## Installation
+
+```
+$ npm install gpslab-controller
+```
 
 ## How to
 
