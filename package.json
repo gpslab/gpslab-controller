@@ -1,6 +1,6 @@
 {
   "name": "gpslab-controller",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "license": "MIT",
   "title": "Micro framework for JavaScript",
   "description": "GpsLab Controller is a JavaScript micro framework",
