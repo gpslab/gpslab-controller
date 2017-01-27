@@ -3,14 +3,19 @@
   "version": "1.0.0",
   "license": "MIT",
   "title": "Micro framework for JavaScript",
-  "keywords": ["jquery", "controller", "framework"],
+  "description": "GpsLab Controller is a JavaScript micro framework",
+  "keywords": [
+    "jquery",
+    "controller",
+    "framework"
+  ],
   "homepage": "https://github.com/gpslab/gpslab-controller",
-  "author": {
-    "name": "Peter Gribanov",
-    "url": "http://peter-gribanov.ru"
-  },
+  "author": "Peter Gribanov (http://peter-gribanov.ru)",
   "repository": {
     "type": "git",
-    "url": "git://github.com/gpslab/gpslab-controller.gi"
+    "url": "git://github.com/gpslab/gpslab-controller.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gpslab/gpslab-controller/issues"
   }
 }
