@@ -17,7 +17,7 @@ var Controller = function() {
 };
 
 Controller.prototype = {
-    addControl: function(name, control) {
+    registerControl: function(name, control) {
         if (control instanceof ControllerControl) {
             this._controls[name] = control;
         }

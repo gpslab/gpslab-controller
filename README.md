@@ -30,7 +30,7 @@ $(function() {
         Controller: new Controller()
     }
 
-    Container.Controller.addControl('form-date', new ControlFormDate());
+    Container.Controller.registerControl('form-date', new ControlFormDate());
     Container.Controller.bind();
 });
 ```
@@ -138,7 +138,7 @@ $(function() {
         Locker: new Locker()
     }
 
-    Container.Controller.addControl('lock', new ControlLock(Container.Locker));
+    Container.Controller.registerControl('lock', new ControlLock(Container.Locker));
     Container.Controller.bind();
 });
 ```
@@ -289,8 +289,8 @@ $(function() {
         Controller: new Controller(),
     }
 
-    Container.Controller.addControl('form-date', new ControlFormDate());
-    Container.Controller.addControl('append', new ControlAppend(
+    Container.Controller.registerControl('form-date', new ControlFormDate());
+    Container.Controller.registerControl('append', new ControlAppend(
         '<input type="date" name="date" data-control="form-date" />',
         Container.Controller
     ));
