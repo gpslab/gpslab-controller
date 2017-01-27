@@ -48,6 +48,7 @@ Use in HTML
 <!-- ... -->
 
 <form>
+    <!-- add Datepicker for this element -->
     <input type="date" name="date" data-control="form-date" />
     <button type="submit">Submit</button>
 </form>
@@ -67,6 +68,7 @@ Container.Controller.bind(input);
 ## Multi controls
 
 You can bind several controls to one DOM element.
+Use spaces (` `) or commas (`,`) for separate control names in the `data` attribute.
 
 ```html
 <form>
@@ -260,6 +262,23 @@ $(function() {
     ));
     Container.Controller.bind();
 });
+```
+
+Use in HTML
+
+```html
+<!-- ... -->
+
+<script src="/node_modules/gpslab-controller/src/Controller/Control.js"></script>
+<script src="/node_modules/gpslab-controller/src/Controller.js"></script>
+<script src="/js/ControlAppendContainer.js"></script>
+<script src="/js/ControlAppend.js"></script>
+<script src="/js/ControlFormDate.js"></script>
+<script src="/js/common.js"></script>
+
+<!-- ... -->
+
+<button type="button" data-control="append">Append</button>
 ```
 
 ## License
