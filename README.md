@@ -14,7 +14,7 @@ Create control
 var ControlFormDate = function() {
 };
 
-$.extend(ControlFormDate, ControllerControl);
+extend(ControlFormDate, ControllerControl);
 
 ControlFormDate.prototype.bind = function(target) {
     target.datepicker({dateFormat: 'yy-mm-dd'});
@@ -42,6 +42,7 @@ Use in HTML
 
 <script src="/node_modules/gpslab-controller/src/Controller/Control.js"></script>
 <script src="/node_modules/gpslab-controller/src/Controller.js"></script>
+<script src="/node_modules/gpslab-controller/src/util/extend.js"></script>
 <script src="/js/ControlFormDate.js"></script>
 <script src="/js/common.js"></script>
 
@@ -117,7 +118,7 @@ var ControlLock = function(locker) {
     this._locker = locker; // private
 };
 
-$.extend(ControlLock, ControllerControl);
+extend(ControlLock, ControllerControl);
 
 ControlLock.prototype.bind = function(target) {
     var that = this;
@@ -150,6 +151,7 @@ Use in HTML
 <script src="/node_modules/gpslab-controller/src/Controller/Control.js"></script>
 <script src="/node_modules/gpslab-controller/src/Controller.js"></script>
 <script src="/node_modules/gpslab-controller/src/util/Locker.js"></script>
+<script src="/node_modules/gpslab-controller/src/util/extend.js"></script>
 <script src="/js/ControlLock.js"></script>
 <script src="/js/common.js"></script>
 
@@ -233,7 +235,7 @@ var ControlLock = function(locker) {
     this._locker = locker; // private
 };
 
-$.extend(ControlLock, ControllerControl);
+extend(ControlLock, ControllerControl);
 
 ControlLock.prototype.bind = function(target) {
     new ControlLockContainer(target, this._locker);
@@ -273,7 +275,7 @@ var ControlAppend = function(element, controller) {
     this._controller = controller; // private
 };
 
-$.extend(ControlLock, ControlAppend);
+extend(ControlLock, ControlAppend);
 
 ControlAppend.prototype.bind = function(target) {
     new ControlAppendContainer(target, this._element, this._controller);
@@ -303,6 +305,7 @@ Use in HTML
 
 <script src="/node_modules/gpslab-controller/src/Controller/Control.js"></script>
 <script src="/node_modules/gpslab-controller/src/Controller.js"></script>
+<script src="/node_modules/gpslab-controller/src/util/extend.js"></script>
 <script src="/js/ControlAppendContainer.js"></script>
 <script src="/js/ControlAppend.js"></script>
 <script src="/js/ControlFormDate.js"></script>
