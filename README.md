@@ -158,6 +158,38 @@ Use in HTML
 <button type="button" data-control="lock">Lock me</button>
 ```
 
+### Change added classes
+
+Change global options
+
+```js
+// common.js
+$(function() {
+    var Container = {
+        Locker: new Locker({
+            body_class: 'my-custom-body_locked',
+            element_class: 'my-custom-element_locked'
+        })
+    }
+});
+```
+
+Change class for concrete element
+
+```js
+var el = $('.lock-button');
+
+el.keydown(function() {
+    Container.Locker.lock(el, 'lock-button_locked');
+}).keyup(function() {
+    Container.Locker.unlock(el, 'lock-button_locked');
+});
+```
+
+```html
+<button type="button" data-control="lock" class="lock-button">Lock me</button>
+```
+
 ## Best practice
 
 ### Combine files

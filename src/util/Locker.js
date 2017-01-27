@@ -12,25 +12,29 @@
 /**
  * Util for lock page and element on page
  */
-var Locker = function() {
+var Locker = function(options) {
     this._is_lock = false; // private
     this._body = $('body'); // private
+    this._options = $.extend({
+        body_class: 'locker_wait',
+        element_class: 'locker_lock'
+    }, options || {}); // private
 };
 
 Locker.prototype = {
-    lock: function(el) {
+    lock: function(el, el_class) {
         this._is_lock = true;
-        this._body.addClass('locker_wait');
+        this._body.addClass(this._options.body_class);
         if (el) {
-            el.addClass('locker_lock');
+            el.addClass(el_class || this._options.element_class);
         }
     },
 
-    unlock: function(el) {
+    unlock: function(el, el_class) {
         this._is_lock = false;
-        this._body.removeClass('locker_wait');
+        this._body.removeClass(this._options.body_class);
         if (el) {
-            el.removeClass('locker_lock');
+            el.removeClass(el_class || this._options.element_class);
         }
     },
 
