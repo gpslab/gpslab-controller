@@ -40,7 +40,8 @@ Use in HTML
 ```html
 <!-- ... -->
 
-<script src="/js/js-controller/build/controller.min.js"></script>
+<script src="/js/js-controller/src/Controller/Control.js"></script>
+<script src="/js/js-controller/src/Controller.js"></script>
 <script src="/js/ControlFormDate.js"></script>
 <script src="/js/common.js"></script>
 
@@ -144,8 +145,9 @@ Use in HTML
 ```html
 <!-- ... -->
 
-<script src="/js/js-controller/build/controller.min.js"></script>
-<script src="/js/js-controller/build/locker.min.js"></script>
+<script src="/js/js-controller/src/Controller/Control.js"></script>
+<script src="/js/js-controller/src/Controller.js"></script>
+<script src="/js/js-controller/src/util/Locker.js"></script>
 <script src="/js/ControlLock.js"></script>
 <script src="/js/common.js"></script>
 
