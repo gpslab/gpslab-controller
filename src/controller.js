@@ -29,7 +29,7 @@
     /**
      * Register control by name.
      * @param {string} name
-     * @param {function} control
+     * @param {Function} control
      * @returns {boolean}
      */
     static registerControl(name, control) {
@@ -44,7 +44,7 @@
 
     /**
      * Register multiple controls at the same time.
-     * @param {object} controls
+     * @param {Object.<string, Function>} controls
      * @returns {boolean}
      */
     static registerControls(controls) {
@@ -61,7 +61,7 @@
 
     /**
      * Binding the control for single specific element.
-     * @param {object} element
+     * @param {HTMLElement} element
      * @returns {boolean}
      */
     static singleBind(element) {
@@ -82,7 +82,7 @@
 
     /**
      * Find the controls in element and children elements and binding it.
-     * @param {object|null} element
+     * @param {?HTMLElement} [element=null]
      * @returns {boolean}
      */
     static bind(element) {
