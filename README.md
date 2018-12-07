@@ -180,12 +180,10 @@ class AppendControl {
 
   append() {
     // create element from HTML template
-    const prototype = document.createElement('template');
-    prototype.innerHTML = this.prototype_template;
+    const template = document.createElement('template');
+    template.innerHTML = this.prototype_template;
 
-    this.element.appendChild(prototype.firstChild);
-    Controller.bind(prototype.firstChild);
-
+    Controller.bind(this.element.appendChild(template.firstChild));
   }
 }
 
