@@ -1,80 +1,129 @@
-GpsLab Controller is a JavaScript micro framework
-=============================================
+Controller
+==========
 
 [![NPM](https://nodei.co/npm/gpslab-controller.png?downloads=true&stars=true)](https://nodei.co/npm/gpslab-controller/)
 
-## Require
-
-jQuery 1.11+
+GpsLab Controller is a JavaScript micro framework. This framework allow to dynamic bind some controls to DOM elements.
 
 ## Installation
+
+Install from [NPM](https://nodei.co/npm/gpslab-controller/):
 
 ```
 $ npm install gpslab-controller
 ```
 
-## How to
+Or download the script [here](https://github.com/gpslab/gpslab-controller/blob/master/src/controller.js) and include it (unless you are packaging scripts somehow else):
 
-Create control
-
-```js
-// ControlFormDate.js
-var ControlFormDate = function() {
-};
-
-extend(ControlFormDate, ControllerControl);
-
-ControlFormDate.prototype.bind = function(target) {
-    target.datepicker({dateFormat: 'yy-mm-dd'});
-};
+```html
+<script src="/path/to/controller.js"></script>
 ```
 
-Add new control to controller
+Or include it via [jsDelivr CDN](https://www.jsdelivr.com/package/npm/gpslab-controller):
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/gpslab-controller@2/src/controller.js"></script>
+```
+
+## Methods
+
+The library exposes these methods: `registerControl()`, `registerControls()`, `singleBind()`, `bind()`.
+
+### Controller.registerControl
+
+Register control by name.
+
+#### Arguments
+
+1. `name` (**string**) Control name/id
+2. `control` (**function**) Control function
+
+#### Returns
+
+**boolean** : True, if the control is successfully registered.
+
+* * *
+
+### Controller.registerControls
+
+Register multiple controls at the same time.
+
+#### Arguments
+
+1. `controls` (**object**) The list of controls whose keys are the names of the controls, and the values ​​are controls.
+
+#### Returns
+
+**boolean** : True, if the controls is successfully registered.
+
+* * *
+
+### Controller.bind
+
+Find the controls in element and children elements and binding it.
+
+#### Arguments
+
+1. `element` (**DOMElement|null**) DOMElement for binding. The `BODY` element as a default.
+
+#### Returns
+
+**boolean** : True, if successfully binding the controls.
+
+* * *
+
+### Controller.singleBind
+
+Binding the control for single specific element.
+
+#### Arguments
+
+1. `element` (**object**) DOMElement for binding.
+
+#### Returns
+
+**boolean** : True, if successfully binding the controls.
+
+## Usage
+
+Create new control for bind jQuery datepicker to input and register it in controller:
 
 ```js
-// common.js
-$(function() {
-    var Container = {
-        Controller: new Controller()
-    }
+Controller.registerControl('form-date', (element) => $(element).datepicker({dateFormat: 'yy-mm-dd'}));
 
-    Container.Controller.registerControl('form-date', new ControlFormDate());
-    Container.Controller.bind();
+document.addEventListener('DOMContentLoaded', function() {
+  Controller.bind(); // bind datepicker control
 });
 ```
 
-Use in HTML
+Use in HTML:
 
 ```html
-<!-- ... -->
-
-<script src="/node_modules/gpslab-controller/src/Controller/Control.js"></script>
-<script src="/node_modules/gpslab-controller/src/Controller.js"></script>
-<script src="/node_modules/gpslab-controller/src/util/extend.js"></script>
-<script src="/js/ControlFormDate.js"></script>
-<script src="/js/common.js"></script>
-
-<!-- ... -->
-
 <form>
-    <!-- add Datepicker for this element -->
-    <input type="date" name="date" data-control="form-date" />
+    <!-- after document loaded Datepicker will be binded to this element -->
+    <input type="date" name="date" data-control="form-date">
     <button type="submit">Submit</button>
 </form>
 ```
 
-## Rebind
+### Binding new elements
 
-You can bind the added controls for a new content:
+You can bind controls for a new added elements:
 
 ```js
-var input = $('<input type="date" name="date" data-control="form-date" />');
-$('body').append(input);
+const input = document.createElement('input');
+input.setAttribute('type', 'date');
+input.setAttribute('name', 'date');
+input.setAttribute('data-control', 'form-date');
 
-Container.Controller.bind(input);
+document.getElementById('my-form').appendChild(input);
+
+Controller.bind(input);
+// or you can single bind specific element if you know for sure that there are no nested controls
+//Controller.singleBind(input);
 ```
 
-## Multi controls
+### Multi controls
 
 You can bind several controls to one DOM element.
 Use spaces (` `) or commas (`,`) for separate control names in the `data` attribute.
@@ -87,133 +136,71 @@ Use spaces (` `) or commas (`,`) for separate control names in the `data` attrib
         required="required"
         data-control="form-date form-required form-related"
         data-related-target="#date_related"
-    />
-    <input type="date" name="date_related" data-control="form-date" id="date_related" />
+    >
+    <input type="date" name="date_related" data-control="form-date" id="date_related">
     <button type="submit">Submit</button>
 </form>
 ```
 
-## Best practice
+### Use classes for controls
 
-### Combine files
-
-Will be better combine all JS files to one file.
-You can use [grunt-concat](https://www.npmjs.com/package/grunt-concat) and
-[grunt-contrib-uglify](https://www.npmjs.com/package/grunt-contrib-uglify) for it.
-
-### Control container
-
-Will be better create new control container on bind control
+It will be better create new classes for define control and encapsulate all logic in them:
 
 ```js
-// ControlLockContainer.js
-var ControlLockContainer = function(target, locker) {
-    this._target = target; // private
-    this._locker = locker; // private
+class SomeControl {
+  constructor(element, dependency) {
+    this.element = element;
+    this.dependency = dependency;
 
-    var that = this;
-    this._target.keydown(function() {
-        that.lock();
-    }).keyup(function() {
-        that.unlock();
-    });
-};
+    this.element.onclick = () => this.onClick();
+  }
 
-ControlLockContainer.prototype = {
-    lock: function() {
-        this._locker.lock(this._target);
-    },
+  onClick() {
+    // do something...
+  }
+}
 
-    unlock: function() {
-        this._locker.unlock(this._target);
-    }
-};
+Controller.registerControl('some', (element) => new SomeControl(element, dependency));
 ```
 
-```js
-// ControlLock.js
-var ControlLock = function(locker) {
-    this._locker = locker; // private
-};
+### Use data attributes
 
-extend(ControlLock, ControllerControl);
-
-ControlLock.prototype.bind = function(target) {
-    new ControlLockContainer(target, this._locker);
-};
-```
-
-### Rebind
-
-On mouse click to target element append to it new data input element and bind to it `ControlFormDate` control.
+On mouse click to target element append to it new data input element and bind to it jQuery datepicker control:
 
 ```js
-// ControlAppendContainer.js
-var ControlAppendContainer = function(target, element, controller) {
-    this._target = target; // private
-    this._element = element; // private
-    this._controller = controller; // private
+class AppendControl {
+  constructor(element) {
+    this.element = element;
+    this.prototype_template = element.getAttribute('data-prototype').trim();
 
-    var that = this;
-    this._target.click(function() {
-        that.append();
-    });
-};
+    this.element.onclick = () => this.append();
+  }
 
-ControlAppendContainer.prototype = {
-    append: function() {
-        var el = this._element.clone();
-        this._controller.bind(el);
-        this._target.append(el);
-    }
-};
-```
+  append() {
+    // create element from HTML template
+    const prototype = document.createElement('template');
+    prototype.innerHTML = this.prototype_template;
 
-```js
-// ControlAppend.js
-var ControlAppend = function(element, controller) {
-    this._element = $(element); // private
-    this._controller = controller; // private
-};
+    Controller.bind(prototype.firstChild);
+    this.element.appendChild(prototype.firstChild);
+  }
+}
 
-extend(ControlLock, ControlAppend);
-
-ControlAppend.prototype.bind = function(target) {
-    new ControlAppendContainer(target, this._element, this._controller);
-};
-```
-
-```js
-// common.js
-$(function() {
-    var Container = {
-        Controller: new Controller(),
-    }
-
-    Container.Controller.registerControls({
-        'form-date': new ControlFormDate(),
-        'append': new ControlAppend('<input type="date" name="date" data-control="form-date" />', Container.Controller)
-    });
-    Container.Controller.bind();
+Controller.registerControls({
+    'form-date': (element) => $(element).datepicker({dateFormat: 'yy-mm-dd'}),
+    'append': (element) => new AppendControl(element),
 });
+Controller.bind();
 ```
 
-Use in HTML
+Use in HTML:
 
 ```html
-<!-- ... -->
-
-<script src="/node_modules/gpslab-controller/src/Controller/Control.js"></script>
-<script src="/node_modules/gpslab-controller/src/Controller.js"></script>
-<script src="/node_modules/gpslab-controller/src/util/extend.js"></script>
-<script src="/js/ControlAppendContainer.js"></script>
-<script src="/js/ControlAppend.js"></script>
-<script src="/js/ControlFormDate.js"></script>
-<script src="/js/common.js"></script>
-
-<!-- ... -->
-
-<button type="button" data-control="append">Append</button>
+<button
+    type="button"
+    data-control="append"
+    data-prototype="<input type='date' name='date' data-control='form-date' />"
+>Append</button>
 ```
 
 ## License

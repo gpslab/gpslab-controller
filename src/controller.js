@@ -80,7 +80,7 @@
     }
 
     /**
-     * Find the controls in element or children elements and binding it.
+     * Find the controls in element and children elements and binding it.
      * @param {object|null} element
      * @returns {boolean}
      */
@@ -96,6 +96,7 @@
         self.singleBind(control);
         binded = true;
       });
+
       return binded;
     }
   }
