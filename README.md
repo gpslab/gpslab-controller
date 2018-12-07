@@ -35,7 +35,7 @@ Register control by name.
 
 #### Arguments
 
-1. `name` (**string**) Control name/id
+1. `name` (**string**) Control name
 2. `control` (**function**) Control function
 
 #### Returns
@@ -54,21 +54,7 @@ Register multiple controls at the same time.
 
 #### Returns
 
-**boolean** : True, if the controls is successfully registered.
-
-* * *
-
-### Controller.bind
-
-Find the controls in element and children elements and binding it.
-
-#### Arguments
-
-1. `element` (**DOMElement|null**) DOMElement for binding. The `BODY` element as a default.
-
-#### Returns
-
-**boolean** : True, if successfully binding the controls.
+**boolean** : True, if all controls is successfully registered.
 
 * * *
 
@@ -79,6 +65,20 @@ Binding the control for single specific element.
 #### Arguments
 
 1. `element` (**object**) DOMElement for binding.
+
+#### Returns
+
+**boolean** : True, if successfully binding the controls.
+
+* * *
+
+### Controller.bind
+
+Find the controls in element and children elements and binding it.
+
+#### Arguments
+
+1. `element` (**DOMElement|null**) DOMElement for binding. The `BODY` element as a default.
 
 #### Returns
 
