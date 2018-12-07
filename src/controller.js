@@ -60,11 +60,11 @@
     }
 
     /**
-     * Binding the control for specific element.
+     * Binding the control for single specific element.
      * @param {object} element
      * @returns {boolean}
      */
-    static bindControl(element) {
+    static singleBind(element) {
       // separate the control names by ' ' or ','
       const names = element.getAttribute('control').replace(/[, ]+/g, ' ').split(' ');
 
@@ -80,20 +80,20 @@
     }
 
     /**
-     * Search the controls in element or children elements and binding it.
+     * Find the controls in element or children elements and binding it.
      * @param {object|null} element
      * @returns {boolean}
      */
     static bind(element) {
       element = element || document.getElementsByTagName('body')[0];
 
+      let binded = false;
       if (element.getAttribute('control')) {
-        return self.bindControl(element);
+        binded = self.singleBind(element);
       }
 
-      let binded = false;
       element.querySelectorAll('[data-control]').forEach((control) => {
-        self.bindControl(control);
+        self.singleBind(control);
         binded = true;
       });
       return binded;
