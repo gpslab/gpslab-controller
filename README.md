@@ -36,7 +36,7 @@ Register control by name.
 #### Arguments
 
 1. `name` (**string**) Control name
-2. `control` (**function**) Control function
+2. `control` (**Function**) Control function
 
 #### Returns
 
@@ -50,7 +50,7 @@ Register multiple controls at the same time.
 
 #### Arguments
 
-1. `controls` (**object**) The list of controls whose keys are the names of the controls, and the values ​​are controls.
+1. `controls` (**Object.<string, Function>**) The list of controls whose keys are the names of the controls, and the values ​​are controls.
 
 #### Returns
 
@@ -64,7 +64,7 @@ Binding the control for single specific element.
 
 #### Arguments
 
-1. `element` (**object**) DOMElement for binding.
+1. `element` (**HTMLElement**) HTMLElement for binding.
 
 #### Returns
 
@@ -78,7 +78,7 @@ Find the controls in element and children elements and binding it.
 
 #### Arguments
 
-1. `element` (**DOMElement|null**) DOMElement for binding. The `BODY` element as a default.
+1. `element` (**?HTMLElement**) HTMLElement for binding. The `BODY` element as a default.
 
 #### Returns
 
@@ -89,7 +89,7 @@ Find the controls in element and children elements and binding it.
 Create new control for bind jQuery datepicker to input and register it in controller:
 
 ```js
-Controller.registerControl('form-date', (element) => $(element).datepicker({dateFormat: 'yy-mm-dd'}));
+Controller.registerControl('form-date', element => $(element).datepicker({dateFormat: 'yy-mm-dd'}));
 
 document.addEventListener('DOMContentLoaded', function() {
   Controller.bind(); // bind datepicker control
@@ -162,7 +162,7 @@ class SomeControl {
   }
 }
 
-Controller.registerControl('some', (element) => new SomeControl(element, dependency));
+Controller.registerControl('some', element => new SomeControl(element, dependency));
 ```
 
 ### Use data attributes
@@ -188,8 +188,8 @@ class AppendControl {
 }
 
 Controller.registerControls({
-    'form-date': (element) => $(element).datepicker({dateFormat: 'yy-mm-dd'}),
-    'append': (element) => new AppendControl(element),
+    'form-date': element => $(element).datepicker({dateFormat: 'yy-mm-dd'}),
+    'append': element => new AppendControl(element),
 });
 Controller.bind();
 ```
