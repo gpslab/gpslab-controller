@@ -116,8 +116,10 @@ input.setAttribute('type', 'date');
 input.setAttribute('name', 'date');
 input.setAttribute('data-control', 'form-date');
 
+// add element to document first
+// sometimes controls incorrectly works if you binding them before add element to a document
 document.getElementById('my-form').appendChild(input);
-
+// binding the controls
 Controller.bind(input);
 // or you can single bind specific element if you know for sure that there are no nested controls
 //Controller.singleBind(input);
@@ -181,8 +183,9 @@ class AppendControl {
     const prototype = document.createElement('template');
     prototype.innerHTML = this.prototype_template;
 
-    Controller.bind(prototype.firstChild);
     this.element.appendChild(prototype.firstChild);
+    Controller.bind(prototype.firstChild);
+
   }
 }
 
