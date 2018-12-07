@@ -69,6 +69,7 @@
       const names = element.getAttribute('control').replace(/[, ]+/g, ' ').split(' ');
 
       let binded = false;
+      // find control by name
       for (let i = 0; i < names.length; i++) {
         if (typeof registeredControls[names[i]] === 'function') {
           registeredControls[names[i]](element);
