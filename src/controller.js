@@ -23,7 +23,10 @@
   }
 }(this, function () {
 
-  const registeredControls = [];
+  /**
+   * @type {Object.<string, Function>}
+   */
+  const registry = [];
 
   class Controller {
     /**
@@ -34,7 +37,7 @@
      */
     static registerControl(name, control) {
       if (typeof control === 'function') {
-        registeredControls[name] = control;
+        registry[name] = control;
 
         return true;
       }
@@ -70,13 +73,13 @@
       }
 
       // separate the control names by ' ' or ','
-      const names = element.getAttribute('data-control').replace(/[, ]+/g, ' ').split(' ');
+      const control_names = element.getAttribute('data-control').replace(/[, ]+/g, ' ').split(' ');
 
       let binded = false;
       // find control by name
-      for (let i = 0; i < names.length; i++) {
-        if (typeof registeredControls[names[i]] === 'function') {
-          registeredControls[names[i]](element);
+      for (let i = 0; i < control_names.length; i++) {
+        if (typeof registry[control_names[i]] === 'function') {
+          registry[control_names[i]](element);
           binded = true;
         }
       }
