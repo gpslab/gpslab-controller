@@ -5,6 +5,10 @@ Controller
 
 GpsLab Controller is a JavaScript micro framework. This framework allow to dynamic bind some controls to DOM elements.
 
+Controller find elements with attribute `data-control` and bind controls to this elements by control name from value
+of `data-control` attribute. For example, you can bind [the jQuery datepicker](https://jqueryui.com/datepicker/) to
+all date input tags and all input tags that will be added later. See the [Usage](#Usage) section for more examples.
+
 ## Installation
 
 Install from [NPM](https://nodei.co/npm/gpslab-controller/):
@@ -86,7 +90,8 @@ Find the controls in element and children elements and binding it.
 
 ## Usage
 
-Create new control for bind jQuery datepicker to input and register it in controller:
+Create new control for bind [the jQuery datepicker](https://jqueryui.com/datepicker/) to input and register it in
+controller:
 
 ```js
 Controller.registerControl('form-date', element => $(element).datepicker({dateFormat: 'yy-mm-dd'}));
