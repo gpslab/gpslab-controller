@@ -50,7 +50,7 @@
     static registerControls(controls) {
       for (const name in controls) {
         if (controls.hasOwnProperty(name)) {
-          self.registerControl(name, controls[name]);
+          Controller.registerControl(name, controls[name]);
         } else {
           return false;
         }
@@ -90,11 +90,11 @@
 
       let binded = false;
       if (element.getAttribute('control')) {
-        binded = self.singleBind(element);
+        binded = Controller.singleBind(element);
       }
 
       element.querySelectorAll('[data-control]').forEach((control) => {
-        self.singleBind(control);
+        Controller.singleBind(control);
         binded = true;
       });
 
