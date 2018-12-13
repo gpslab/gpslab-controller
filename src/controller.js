@@ -23,7 +23,10 @@
   }
 }(this, function () {
 
-  const registeredControls = [];
+  /**
+   * @type {Object.<string, Function>}
+   */
+  const registry = [];
 
   class Controller {
     /**
@@ -34,7 +37,7 @@
      */
     static registerControl(name, control) {
       if (typeof control === 'function') {
-        registeredControls[name] = control;
+        registry[name] = control;
 
         return true;
       }
@@ -50,7 +53,7 @@
     static registerControls(controls) {
       for (const name in controls) {
         if (controls.hasOwnProperty(name)) {
-          self.registerControl(name, controls[name]);
+          Controller.registerControl(name, controls[name]);
         } else {
           return false;
         }
@@ -65,14 +68,18 @@
      * @returns {boolean}
      */
     static singleBind(element) {
+      if (!element.getAttribute('data-control')) {
+        return false;
+      }
+
       // separate the control names by ' ' or ','
-      const names = element.getAttribute('control').replace(/[, ]+/g, ' ').split(' ');
+      const control_names = element.getAttribute('data-control').replace(/[, ]+/g, ' ').split(' ');
 
       let binded = false;
       // find control by name
-      for (let i = 0; i < names.length; i++) {
-        if (typeof registeredControls[names[i]] === 'function') {
-          registeredControls[names[i]](element);
+      for (let i = 0; i < control_names.length; i++) {
+        if (typeof registry[control_names[i]] === 'function') {
+          registry[control_names[i]](element);
           binded = true;
         }
       }
@@ -88,13 +95,10 @@
     static bind(element) {
       element = element || document.getElementsByTagName('body')[0];
 
-      let binded = false;
-      if (element.getAttribute('control')) {
-        binded = self.singleBind(element);
-      }
+      let binded = Controller.singleBind(element);
 
       element.querySelectorAll('[data-control]').forEach((control) => {
-        self.singleBind(control);
+        Controller.singleBind(control);
         binded = true;
       });
 
