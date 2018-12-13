@@ -7,7 +7,7 @@ GpsLab Controller is a JavaScript micro framework. This framework allow to dynam
 
 Controller find elements with attribute `data-control` and bind controls to this elements by control name from value
 of `data-control` attribute. For example, you can bind [the jQuery datepicker](https://jqueryui.com/datepicker/) to
-all date input tags and all input tags that will be added later. See the [Usage](#Usage) section for more examples.
+all date input tags and all input tags that will be added later. See the [Usage](#usage) section for more examples.
 
 ## Installation
 
