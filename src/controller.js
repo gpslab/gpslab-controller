@@ -65,8 +65,12 @@
      * @returns {boolean}
      */
     static singleBind(element) {
+      if (!element.getAttribute('data-control')) {
+        return false;
+      }
+
       // separate the control names by ' ' or ','
-      const names = element.getAttribute('control').replace(/[, ]+/g, ' ').split(' ');
+      const names = element.getAttribute('data-control').replace(/[, ]+/g, ' ').split(' ');
 
       let binded = false;
       // find control by name
@@ -88,10 +92,7 @@
     static bind(element) {
       element = element || document.getElementsByTagName('body')[0];
 
-      let binded = false;
-      if (element.getAttribute('control')) {
-        binded = Controller.singleBind(element);
-      }
+      let binded = Controller.singleBind(element);
 
       element.querySelectorAll('[data-control]').forEach((control) => {
         Controller.singleBind(control);
