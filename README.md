@@ -17,7 +17,7 @@ Install from [NPM](https://nodei.co/npm/gpslab-controller/):
 $ npm install gpslab-controller
 ```
 
-Or download the script [here](https://github.com/gpslab/gpslab-controller/blob/master/src/controller.js) and include it (unless you are packaging scripts somehow else):
+Or download the script [here](https://github.com/gpslab/gpslab-controller/blob/master/dist/controller.min.js) and include it (unless you are packaging scripts somehow else):
 
 ```html
 <script src="/path/to/controller.js"></script>
@@ -26,7 +26,7 @@ Or download the script [here](https://github.com/gpslab/gpslab-controller/blob/m
 Or include it via [jsDelivr CDN](https://www.jsdelivr.com/package/npm/gpslab-controller):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/gpslab-controller@2/src/controller.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gpslab-controller@2/dist/controller.min.js"></script>
 ```
 
 ## ECMAScript 2016
