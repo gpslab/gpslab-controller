@@ -68,7 +68,7 @@ Binding the control for single specific element.
 
 #### Arguments
 
-1. `element` (**HTMLElement**) HTMLElement for binding.
+1. `element` (**Element**) Element for binding.
 
 #### Returns
 
@@ -82,7 +82,7 @@ Find the controls in element and children elements and binding it.
 
 #### Arguments
 
-1. `element` (**HTMLElement**) HTMLElement for binding.
+1. `element` (**Element**) Element for binding.
 
 #### Returns
 
@@ -97,7 +97,7 @@ controller:
 Controller.registerControl('form-date', element => $(element).datepicker({dateFormat: 'yy-mm-dd'}));
 
 document.addEventListener('DOMContentLoaded', function() {
-  Controller.bind(document.getElementsByTagName('body')[0]); // find input and bind datepicker control to it
+  Controller.bind(document.getElementsByTagName('body').item(0)); // find input and bind datepicker control to it
 });
 ```
 

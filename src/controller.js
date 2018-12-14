@@ -64,12 +64,12 @@
 
     /**
      * Binding the control for single specific element.
-     * @param {HTMLElement} element
+     * @param {Element} element
      * @returns {boolean}
      */
     static singleBind(element) {
-      if (!(element instanceof HTMLElement)) {
-        throw new Error(`The element to be binding must be instance of HTMLElement, now it is "${typeof element}".`);
+      if (!(element instanceof Element)) {
+        throw new Error(`The element to be binding must be instance of Element, now it is "${typeof element}".`);
       }
 
       if (!element.getAttribute('data-control')) {
@@ -93,12 +93,12 @@
 
     /**
      * Find the controls in element and children elements and binding it.
-     * @param {HTMLElement} element
+     * @param {Element} element
      * @returns {boolean}
      */
     static bind(element) {
-      if (!(element instanceof HTMLElement)) {
-        throw new Error(`The element to be binding must be instance of HTMLElement, now it is "${typeof element}".`);
+      if (!(element instanceof Element)) {
+        throw new Error(`The element to be binding must be instance of Element, now it is "${typeof element}".`);
       }
 
       let binded = Controller.singleBind(element);
