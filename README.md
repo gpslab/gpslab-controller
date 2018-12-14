@@ -29,6 +29,11 @@ Or include it via [jsDelivr CDN](https://www.jsdelivr.com/package/npm/gpslab-con
 <script src="https://cdn.jsdelivr.net/npm/gpslab-controller@2/src/controller.js"></script>
 ```
 
+## ECMAScript 2016
+
+This framework is written for ECMAScript 2016, but you can use the recompiled version for
+[ECMAScript 2015](dist/controller.es2015.min.js).
+
 ## Methods
 
 The library exposes these methods: `registerControl()`, `registerControls()`, `singleBind()`, `bind()`.
