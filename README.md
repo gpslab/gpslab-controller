@@ -137,16 +137,26 @@ Use spaces (` `) or commas (`,`) for separate control names in the `data` attrib
 
 ```html
 <form>
-    <input
-        type="date"
-        name="date"
-        required="required"
-        data-control="form-date form-required form-related"
-        data-related-target="#date_related"
-    >
-    <input type="date" name="date_related" data-control="form-date" id="date_related">
+    <!-- set password and repeat it for sign up -->
+    <input type="password" name="password" required="required" data-control="show-password input-equal-to" data-equal-to="#repeat_password">
+    <input type="password" name="repeat_password" required="required" data-control="show-password" id="repeat_password">
     <button type="submit">Submit</button>
 </form>
+```
+
+```js
+Controller.registerControl('input-equal-to', element => {
+  const equalTo = document.querySelectorAll(element.getAttribute('data-equal-to'));
+  // check that value of input element equal to value of target element
+});
+Controller.registerControl('show-password', element => {
+  // for example, you can add button for show password
+});
+
+// bind all controls for all elements
+document.addEventListener('DOMContentLoaded', function() {
+  Controller.bind(document.getElementsByTagName('body').item(0));
+});
 ```
 
 ### Use classes for controls
@@ -205,7 +215,7 @@ Use in HTML:
 <button
     type="button"
     data-control="append"
-    data-prototype="<input type='date' name='date' data-control='form-date' />"
+    data-prototype="<input type='date' name='date' data-control='form-date'>"
 >Append</button>
 ```
 
