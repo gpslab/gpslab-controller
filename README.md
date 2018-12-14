@@ -146,7 +146,7 @@ Use spaces (` `) or commas (`,`) for separate control names in the `data` attrib
 
 ```js
 Controller.registerControl('input-equal-to', element => {
-  const equalTo = document.querySelectorAll(element.getAttribute('data-equal-to'));
+  const target = document.querySelectorAll(element.getAttribute('data-equal-to'));
   // check that value of input element equal to value of target element
 });
 Controller.registerControl('show-password', element => {
