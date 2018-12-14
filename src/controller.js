@@ -9,18 +9,18 @@
  */
 
 
-(function (root, factory) {
+(function (global, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
     define([], factory);
-  } else if (typeof module !== "undefined" && module.exports) {
+  } else if (typeof module !== 'undefined' && module.exports) {
     // CommonJS/Node module
     module.exports = factory();
   } else {
     // Browser globals
-    root.Controller = factory();
+    global.Controller = factory();
   }
-}(this, function () {
+}(typeof window !== 'undefined' ? window : this, function () {
 
   /**
    * @type {Object.<string, Function>}
@@ -68,7 +68,7 @@
      */
     static singleBind(element) {
       if (!(element instanceof Element)) {
-        throw new Error(`The element to be binding must be instance of Element, now it is "${typeof element}".`);
+        throw new Error(`The element to be binding must be instance of Element, now it's "${typeof element}".`);
       }
 
       if (!element.getAttribute('data-control')) {
@@ -97,7 +97,7 @@
      */
     static bind(element) {
       if (!(element instanceof Element)) {
-        throw new Error(`The element to be binding must be instance of Element, now it is "${typeof element}".`);
+        throw new Error(`The element to be binding must be instance of Element, now it's "${typeof element}".`);
       }
 
       let binded = Controller.singleBind(element);
