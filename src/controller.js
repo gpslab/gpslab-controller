@@ -2,8 +2,7 @@
  * GpsLab Controller
  * https://github.com/gpslab/gpslab-controller
  *
- * Copyright 2017, Peter Gribanov
- * http://peter-gribanov.ru
+ * Copyright 2018 by Peter Gribanov (http://peter-gribanov.ru)
  *
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/MIT
@@ -64,10 +63,14 @@
 
     /**
      * Binding the control for single specific element.
-     * @param {HTMLElement} element
+     * @param {Element} element
      * @returns {boolean}
      */
     static singleBind(element) {
+      if (!(element instanceof Element)) {
+        throw new Error(`The element to be binding must be instance of Element, now it is "${typeof element}".`);
+      }
+
       if (!element.getAttribute('data-control')) {
         return false;
       }
@@ -89,11 +92,13 @@
 
     /**
      * Find the controls in element and children elements and binding it.
-     * @param {?HTMLElement} [element=null]
+     * @param {Element} element
      * @returns {boolean}
      */
     static bind(element) {
-      element = element || document.getElementsByTagName('body')[0];
+      if (!(element instanceof Element)) {
+        throw new Error(`The element to be binding must be instance of Element, now it is "${typeof element}".`);
+      }
 
       let binded = Controller.singleBind(element);
 

@@ -17,7 +17,7 @@ Install from [NPM](https://nodei.co/npm/gpslab-controller/):
 $ npm install gpslab-controller
 ```
 
-Or download the script [here](https://github.com/gpslab/gpslab-controller/blob/master/src/controller.js) and include it (unless you are packaging scripts somehow else):
+Or download the script [here](https://github.com/gpslab/gpslab-controller/blob/master/dist/controller.min.js) and include it (unless you are packaging scripts somehow else):
 
 ```html
 <script src="/path/to/controller.js"></script>
@@ -26,8 +26,13 @@ Or download the script [here](https://github.com/gpslab/gpslab-controller/blob/m
 Or include it via [jsDelivr CDN](https://www.jsdelivr.com/package/npm/gpslab-controller):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/gpslab-controller@2/src/controller.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gpslab-controller@2/dist/controller.min.js"></script>
 ```
+
+## ECMAScript 2016
+
+This framework is written for ECMAScript 2016, but you can use the recompiled version for
+[ECMAScript 2015](dist/controller.es2015.min.js).
 
 ## Methods
 
@@ -68,7 +73,7 @@ Binding the control for single specific element.
 
 #### Arguments
 
-1. `element` (**HTMLElement**) HTMLElement for binding.
+1. `element` (**Element**) Element for binding.
 
 #### Returns
 
@@ -82,7 +87,7 @@ Find the controls in element and children elements and binding it.
 
 #### Arguments
 
-1. `element` (**?HTMLElement**) HTMLElement for binding. The `BODY` element as a default.
+1. `element` (**Element**) Element for binding.
 
 #### Returns
 
@@ -94,10 +99,10 @@ Create new control for bind [the jQuery datepicker](https://jqueryui.com/datepic
 controller:
 
 ```js
-Controller.registerControl('form-date', element => $(element).datepicker({dateFormat: 'yy-mm-dd'}));
+Controller.registerControl('date-picker', element => $(element).datepicker({dateFormat: 'yy-mm-dd'}));
 
 document.addEventListener('DOMContentLoaded', function() {
-  Controller.bind(); // bind datepicker control
+  Controller.bind(document.getElementsByTagName('body').item(0)); // find input and bind datepicker control to it
 });
 ```
 
@@ -106,7 +111,7 @@ Use in HTML:
 ```html
 <form>
     <!-- after document loaded Datepicker will be binded to this element -->
-    <input type="date" name="date" data-control="form-date">
+    <input type="date" name="date" data-control="date-picker">
     <button type="submit">Submit</button>
 </form>
 ```
@@ -119,7 +124,7 @@ You can bind controls for a new added elements:
 const input = document.createElement('input');
 input.setAttribute('type', 'date');
 input.setAttribute('name', 'date');
-input.setAttribute('data-control', 'form-date');
+input.setAttribute('data-control', 'date-picker');
 
 // add element to document first
 // sometimes controls incorrectly works if you binding them before add element to a document
@@ -137,16 +142,26 @@ Use spaces (` `) or commas (`,`) for separate control names in the `data` attrib
 
 ```html
 <form>
-    <input
-        type="date"
-        name="date"
-        required="required"
-        data-control="form-date form-required form-related"
-        data-related-target="#date_related"
-    >
-    <input type="date" name="date_related" data-control="form-date" id="date_related">
+    <!-- set password and repeat it for sign up -->
+    <input type="password" name="password" required="required" data-control="show-password input-equal-to" data-equal-to="#repeat_password">
+    <input type="password" name="repeat_password" required="required" data-control="show-password" id="repeat_password">
     <button type="submit">Submit</button>
 </form>
+```
+
+```js
+Controller.registerControl('input-equal-to', element => {
+  const target = document.querySelectorAll(element.getAttribute('data-equal-to'));
+  // check that value of input element equal to value of target element
+});
+Controller.registerControl('show-password', element => {
+  // for example, you can add button for show password
+});
+
+// bind all controls for all elements
+document.addEventListener('DOMContentLoaded', function() {
+  Controller.bind(document.getElementsByTagName('body').item(0));
+});
 ```
 
 ### Use classes for controls
@@ -193,10 +208,10 @@ class AppendControl {
 }
 
 Controller.registerControls({
-    'form-date': element => $(element).datepicker({dateFormat: 'yy-mm-dd'}),
+    'date-picker': element => $(element).datepicker({dateFormat: 'yy-mm-dd'}),
     'append': element => new AppendControl(element),
 });
-Controller.bind();
+Controller.bind(document.getElementsByTagName('body')[0]);
 ```
 
 Use in HTML:
@@ -205,9 +220,21 @@ Use in HTML:
 <button
     type="button"
     data-control="append"
-    data-prototype="<input type='date' name='date' data-control='form-date' />"
+    data-prototype="<input type='date' name='date' data-control='date-picker'>"
 >Append</button>
 ```
+
+## Building
+
+For contributors:
+
+* Run `npm install` to install all the dependencies.
+* Run `gulp`. The default task will build minify files.
+
+For repo owners, after a code change:
+
+* Run `npm version` to tag the new release.
+* Run `npm login`, `npm publish` to release on npm.
 
 ## License
 
