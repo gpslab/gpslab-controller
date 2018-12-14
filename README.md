@@ -82,7 +82,7 @@ Find the controls in element and children elements and binding it.
 
 #### Arguments
 
-1. `element` (**?HTMLElement**) HTMLElement for binding. The `BODY` element as a default.
+1. `element` (**HTMLElement**) HTMLElement for binding.
 
 #### Returns
 
@@ -97,7 +97,7 @@ controller:
 Controller.registerControl('form-date', element => $(element).datepicker({dateFormat: 'yy-mm-dd'}));
 
 document.addEventListener('DOMContentLoaded', function() {
-  Controller.bind(); // bind datepicker control
+  Controller.bind(document.getElementsByTagName('body')[0]); // find input and bind datepicker control to it
 });
 ```
 
@@ -196,7 +196,7 @@ Controller.registerControls({
     'form-date': element => $(element).datepicker({dateFormat: 'yy-mm-dd'}),
     'append': element => new AppendControl(element),
 });
-Controller.bind();
+Controller.bind(document.getElementsByTagName('body')[0]);
 ```
 
 Use in HTML:

@@ -68,6 +68,10 @@
      * @returns {boolean}
      */
     static singleBind(element) {
+      if (!(element instanceof HTMLElement)) {
+        throw new Error(`The element to be binding must be instance of HTMLElement, now it is "${typeof element}".`);
+      }
+
       if (!element.getAttribute('data-control')) {
         return false;
       }
@@ -89,11 +93,13 @@
 
     /**
      * Find the controls in element and children elements and binding it.
-     * @param {?HTMLElement} [element=null]
+     * @param {HTMLElement} element
      * @returns {boolean}
      */
     static bind(element) {
-      element = element || document.getElementsByTagName('body')[0];
+      if (!(element instanceof HTMLElement)) {
+        throw new Error(`The element to be binding must be instance of HTMLElement, now it is "${typeof element}".`);
+      }
 
       let binded = Controller.singleBind(element);
 
