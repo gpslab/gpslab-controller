@@ -5,18 +5,19 @@ import rename from 'gulp-rename';
 import sourcemaps from 'gulp-sourcemaps';
 import buffer from 'gulp-buffer';
 import headerComment from 'gulp-header-comment';
+import replace from 'gulp-replace';
 import babelify from 'babelify';
 import browserify from 'browserify';
 import source from 'vinyl-source-stream';
 
 const copyright = `
-  <%= pkg.title %>
-  <%= pkg.homepage %>
+<%= pkg.title %>
+<%= pkg.homepage %>
 
-  Copyright <%= moment().format('YYYY') %> by <%= pkg.author %>
+Copyright <%= moment().format('YYYY') %> by <%= pkg.author %>
 
-  Licensed under the <%= pkg.license %> license:
-  http://www.opensource.org/licenses/<%= pkg.license %>
+Licensed under the <%= pkg.license %> license:
+http://www.opensource.org/licenses/<%= pkg.license %>
 `;
 
 function es2015() {
@@ -25,6 +26,9 @@ function es2015() {
     .bundle()
     .pipe(source('controller.es2015.min.js'))
     .pipe(buffer())
+    // not register as CommonJS/Node module or AMD in ES2015
+    .pipe(replace('if (typeof define === \'function\' && define.amd) {', 'if (false) {'))
+    .pipe(replace('if (typeof module !== \'undefined\' && module.exports) {', 'if (false) {'))
     .pipe(uglify({
       compress: { drop_console: true },
     }))
