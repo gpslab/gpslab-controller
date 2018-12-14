@@ -94,7 +94,7 @@ Create new control for bind [the jQuery datepicker](https://jqueryui.com/datepic
 controller:
 
 ```js
-Controller.registerControl('form-date', element => $(element).datepicker({dateFormat: 'yy-mm-dd'}));
+Controller.registerControl('date-picker', element => $(element).datepicker({dateFormat: 'yy-mm-dd'}));
 
 document.addEventListener('DOMContentLoaded', function() {
   Controller.bind(document.getElementsByTagName('body').item(0)); // find input and bind datepicker control to it
@@ -106,7 +106,7 @@ Use in HTML:
 ```html
 <form>
     <!-- after document loaded Datepicker will be binded to this element -->
-    <input type="date" name="date" data-control="form-date">
+    <input type="date" name="date" data-control="date-picker">
     <button type="submit">Submit</button>
 </form>
 ```
@@ -119,7 +119,7 @@ You can bind controls for a new added elements:
 const input = document.createElement('input');
 input.setAttribute('type', 'date');
 input.setAttribute('name', 'date');
-input.setAttribute('data-control', 'form-date');
+input.setAttribute('data-control', 'date-picker');
 
 // add element to document first
 // sometimes controls incorrectly works if you binding them before add element to a document
@@ -203,7 +203,7 @@ class AppendControl {
 }
 
 Controller.registerControls({
-    'form-date': element => $(element).datepicker({dateFormat: 'yy-mm-dd'}),
+    'date-picker': element => $(element).datepicker({dateFormat: 'yy-mm-dd'}),
     'append': element => new AppendControl(element),
 });
 Controller.bind(document.getElementsByTagName('body')[0]);
@@ -215,7 +215,7 @@ Use in HTML:
 <button
     type="button"
     data-control="append"
-    data-prototype="<input type='date' name='date' data-control='form-date'>"
+    data-prototype="<input type='date' name='date' data-control='date-picker'>"
 >Append</button>
 ```
 
