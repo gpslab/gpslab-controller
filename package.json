@@ -17,5 +17,19 @@
   },
   "bugs": {
     "url": "https://github.com/gpslab/gpslab-controller/issues"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^7.3.0",
+    "browserify": "^14.4.0",
+    "gulp": "^3.9.1",
+    "gulp-buffer": "0.0.2",
+    "gulp-rename": "^1.4.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^2",
+    "gulp-uglify-es": "^1.0.4",
+    "vinyl-source-stream": "^1.1.2"
   }
 }

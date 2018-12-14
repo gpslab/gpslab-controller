@@ -209,6 +209,18 @@ Use in HTML:
 >Append</button>
 ```
 
+## Building
+
+For contributors:
+
+* Run `npm install` to install all the dependencies.
+* Run `gulp`. The default task will build minify files.
+
+For repo owners, after a code change:
+
+* Run `npm version` to tag the new release.
+* Run `npm login`, `npm publish` to release on npm.
+
 ## License
 
 This bundle is under the [MIT license](http://opensource.org/licenses/MIT). See the complete license in the file: LICENSE
