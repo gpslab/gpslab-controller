@@ -1,6 +1,7 @@
 {
   "presets": [ "es2015" ],
   "plugins": [
-    "babel-polyfill"
+    "babel-polyfill",
+    "babel-plugin-loop-optimizer"
   ]
 }
