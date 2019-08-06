@@ -101,9 +101,8 @@ controller:
 ```js
 Controller.registerControl('date-picker', element => $(element).datepicker({dateFormat: 'yy-mm-dd'}));
 
-document.addEventListener('DOMContentLoaded', function() {
-  Controller.bind(document.getElementsByTagName('body').item(0)); // find input and bind datepicker control to it
-});
+// find input and bind datepicker control to it
+document.addEventListener('DOMContentLoaded', () => Controller.bind(document.getElementsByTagName('body').item(0)));
 ```
 
 Use in HTML:
@@ -159,9 +158,7 @@ Controller.registerControl('show-password', element => {
 });
 
 // bind all controls for all elements
-document.addEventListener('DOMContentLoaded', function() {
-  Controller.bind(document.getElementsByTagName('body').item(0));
-});
+document.addEventListener('DOMContentLoaded', () => Controller.bind(document.getElementsByTagName('body').item(0)));
 ```
 
 ### Use classes for controls
