@@ -36,7 +36,13 @@ This framework is written for ECMAScript 2016, but you can use the recompiled ve
 
 ## Methods
 
-The library exposes these methods: `registerControl()`, `registerControls()`, `singleBind()`, `bind()`.
+The library exposes these methods: `register()`, `registerControl()`, `registerControls()`, `singleBind()`, `bind()`.
+
+### Controller.register
+
+Bind all controls for all elements after content loaded.
+
+* * *
 
 ### Controller.registerControl
 
@@ -101,9 +107,8 @@ controller:
 ```js
 Controller.registerControl('date-picker', element => $(element).datepicker({dateFormat: 'yy-mm-dd'}));
 
-document.addEventListener('DOMContentLoaded', function() {
-  Controller.bind(document.getElementsByTagName('body').item(0)); // find input and bind datepicker control to it
-});
+// register Controller to find input and bind datepicker control to it
+Controller.register();
 ```
 
 Use in HTML:
@@ -159,9 +164,7 @@ Controller.registerControl('show-password', element => {
 });
 
 // bind all controls for all elements
-document.addEventListener('DOMContentLoaded', function() {
-  Controller.bind(document.getElementsByTagName('body').item(0));
-});
+Controller.register();
 ```
 
 ### Use classes for controls
@@ -211,7 +214,7 @@ Controller.registerControls({
     'date-picker': element => $(element).datepicker({dateFormat: 'yy-mm-dd'}),
     'append': element => new AppendControl(element),
 });
-Controller.bind(document.getElementsByTagName('body')[0]);
+Controller.register();
 ```
 
 Use in HTML:

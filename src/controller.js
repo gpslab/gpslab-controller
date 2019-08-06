@@ -29,6 +29,15 @@
 
   class Controller {
     /**
+     * Bind all controls for all elements after content loaded.
+     */
+    static register() {
+      document.addEventListener('DOMContentLoaded', () => {
+        Controller.bind(document.getElementsByTagName('body').item(0));
+      });
+    }
+
+    /**
      * Register control by name.
      * @param {string} name
      * @param {Function} control
