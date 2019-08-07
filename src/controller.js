@@ -2,7 +2,7 @@
  * GpsLab Controller
  * https://github.com/gpslab/gpslab-controller
  *
- * Copyright 2018 by Peter Gribanov (http://peter-gribanov.ru)
+ * Copyright 2019 by Peter Gribanov (http://peter-gribanov.ru)
  *
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/MIT
