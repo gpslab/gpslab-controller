@@ -2,7 +2,7 @@
  * GpsLab Controller
  * https://github.com/gpslab/gpslab-controller
  *
- * Copyright 2018 by Peter Gribanov (http://peter-gribanov.ru)
+ * Copyright 2019 by Peter Gribanov (http://peter-gribanov.ru)
  *
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/MIT
@@ -28,6 +28,15 @@
   const registry = [];
 
   class Controller {
+    /**
+     * Bind all controls for all elements after content loaded.
+     */
+    static register() {
+      document.addEventListener('DOMContentLoaded', () => {
+        Controller.bind(document.getElementsByTagName('body').item(0));
+      });
+    }
+
     /**
      * Register control by name.
      * @param {string} name
